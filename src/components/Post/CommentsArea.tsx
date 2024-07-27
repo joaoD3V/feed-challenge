@@ -90,7 +90,7 @@ export function CommentsArea({ postId }: CommentsAreaProps) {
   return (
     <div>
       <span className="text-base font-bold leading-[160%]">
-        Deixe seu feedback
+        Deixe seu comentário
       </span>
 
       <Textarea

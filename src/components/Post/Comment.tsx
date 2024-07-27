@@ -103,7 +103,10 @@ export function Comment({
               Atualizar
             </Button>
             <Button
-              onClick={() => setIsEditingMode(false)}
+              onClick={() => {
+                setIsEditingMode(false);
+                setCurrentComment(content);
+              }}
               className="mt-4 h-[49px] w-[108px] bg-rose-500 text-base font-bold text-zinc-50 hover:bg-rose-700 disabled:cursor-not-allowed disabled:opacity-50"
             >
               Cancelar
