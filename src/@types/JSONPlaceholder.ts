@@ -1,7 +1,7 @@
 export type Post = {
   userId: number;
   id: number;
-  title: string;
+  title?: string;
   body: string;
 };
 

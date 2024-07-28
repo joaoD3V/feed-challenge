@@ -1,16 +1,22 @@
 import { useQuery } from '@tanstack/react-query';
+import { useState } from 'react';
+import { toast } from 'sonner';
 
+import { Post as PostType } from '@/@types/JSONPlaceholder';
 import { Post } from '@/components/Post';
 import { ProfileResume } from '@/components/ProfileResume';
 import { Skeleton } from '@/components/ui/skeleton';
 import { userMock } from '@/factories/user';
+import { queryClient } from '@/lib/react-query';
 import { Error } from '@/pages/Error';
 import { getPosts } from '@/requests/get-posts';
 import { getUsers } from '@/requests/get-users';
-import { shuffleArray } from '@/utils/shuffle-array';
+import { delay } from '@/utils/delay';
 import { userMapper } from '@/utils/user-mapper';
 
 export function Feed() {
+  const [postIdSelected, setPostIdSelected] = useState<number | null>(null);
+
   const {
     data: posts,
     isLoading: isLoadingPosts,
@@ -40,6 +46,34 @@ export function Feed() {
 
   const currentUser = userMock;
 
+  async function handleRemovePost(id: number) {
+    setPostIdSelected(id);
+    await delay(); // Mockando o tempo de espera de um fake request
+
+    queryClient.setQueryData(['posts'], (prev: PostType[]) =>
+      prev.filter((p) => p.id !== id)
+    );
+
+    queryClient.setQueryData(['comments', postIdSelected], []);
+
+    toast.success('Post excluído com sucesso! 😀');
+    setPostIdSelected(null);
+  }
+
+  async function handleEditingPost(id: number, newPostUpdated: string) {
+    setPostIdSelected(id);
+    await delay(); // Mockando o tempo de espera de um fake request
+
+    queryClient.setQueryData(['posts'], (prev: PostType[]) => {
+      const postIndex = prev.findIndex((p) => p.id === id);
+      prev[postIndex].body = newPostUpdated;
+      return [...prev];
+    });
+
+    toast.success('Post atualizado com sucesso! 😀');
+    setPostIdSelected(null);
+  }
+
   return (
     <main className="relative flex items-start gap-8">
       <ProfileResume
@@ -60,12 +94,15 @@ export function Feed() {
         </div>
       ) : (
         <div className="flex flex-1 flex-col gap-8">
-          {shuffleArray(posts!)?.map((post) => (
+          {posts!.map((post) => (
             <Post
               key={post.id}
               postId={post.id}
               user={userMapper({ usersList: users!, id: post.userId })}
               content={post.body}
+              onRemovePost={handleRemovePost}
+              onEditingPost={handleEditingPost}
+              isOnAction={post.id === postIdSelected}
             />
           ))}
         </div>

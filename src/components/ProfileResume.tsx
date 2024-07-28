@@ -2,6 +2,7 @@ import { PencilSimpleLine } from '@phosphor-icons/react';
 
 import { userMock } from '@/factories/user';
 
+import { CreateNewPost } from './CreateNewPost';
 import { Button } from './ui/button';
 import { Separator } from './ui/separator';
 
@@ -28,14 +29,19 @@ export function ProfileResume({ user }: ProfileResumeProps) {
         {user.email}
       </span>
 
-      <Separator className="my-6 h-[0.5px]" />
+      {user.id === userMock.id && (
+        <>
+          <Separator className="my-6 h-[0.5px]" />
 
-      <Button
-        variant="outline"
-        className="flex h-[50px] w-[192px] items-center gap-2 border-green-light text-base font-bold text-green-light hover:bg-green-light hover:text-zinc-100"
-      >
-        <PencilSimpleLine size={20} /> Editar seu perfil
-      </Button>
+          <div className="space-y-6">
+            <Button className="flex h-[50px] w-[192px] items-center gap-2 border border-zinc-50 text-base font-medium text-zinc-50 hover:bg-zinc-800">
+              <PencilSimpleLine size={22} /> Editar perfil
+            </Button>
+
+            <CreateNewPost />
+          </div>
+        </>
+      )}
     </div>
   );
 }

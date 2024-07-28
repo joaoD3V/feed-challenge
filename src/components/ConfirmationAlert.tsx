@@ -15,13 +15,15 @@ import {
 type ConfirmationAlertProps = {
   title: string;
   description: string;
-  onConfirm: () => void;
+  idToRemove: number;
+  onConfirm: (id: number) => void;
   children: ReactNode;
 };
 
 export function ConfirmationAlert({
   title,
   description,
+  idToRemove,
   onConfirm,
   children,
 }: ConfirmationAlertProps) {
@@ -42,7 +44,7 @@ export function ConfirmationAlert({
             Cancelar
           </AlertDialogCancel>
           <AlertDialogAction
-            onClick={onConfirm}
+            onClick={() => onConfirm(idToRemove)}
             className="bg-rose-500 text-zinc-100 hover:bg-rose-700"
           >
             Sim, remover

@@ -67,17 +67,18 @@ export function Comment({
                       </Button>
                     </Tip>
 
-                    <Tip message="Remover comentário">
-                      <ConfirmationAlert
-                        title="Remover comentário"
-                        description="Você tem certeza que gostaria de remover este comentário?"
-                        onConfirm={() => onRemoveComment(commentId)}
-                      >
-                        <Button variant="ghost" className="p-1">
+                    <ConfirmationAlert
+                      title="Remover comentário"
+                      description="Você tem certeza que gostaria de remover este comentário?"
+                      onConfirm={onRemoveComment}
+                      idToRemove={commentId}
+                    >
+                      <Button variant="ghost" className="p-1">
+                        <Tip message="Remover comentário">
                           <TrashSimple size={18} />
-                        </Button>
-                      </ConfirmationAlert>
-                    </Tip>
+                        </Tip>
+                      </Button>
+                    </ConfirmationAlert>
                   </div>
                 )}
               </>
