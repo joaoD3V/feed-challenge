@@ -4,8 +4,8 @@ import { useState } from 'react';
 import { toast } from 'sonner';
 
 import { Comment as CommentType } from '@/@types/JSONPlaceholder';
+import { userMock } from '@/factories/user';
 import { queryClient } from '@/lib/react-query';
-import { userMock } from '@/mocks/user';
 import { getCommentsByPostId } from '@/requests/get-comments-by-post-id';
 import { delay } from '@/utils/delay';
 import { extractNameFromEmail } from '@/utils/extract-name-from-email';

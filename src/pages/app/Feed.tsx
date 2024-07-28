@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { Post } from '@/components/Post';
 import { ProfileResume } from '@/components/ProfileResume';
 import { Skeleton } from '@/components/ui/skeleton';
+import { userMock } from '@/factories/user';
 import { Error } from '@/pages/Error';
 import { getPosts } from '@/requests/get-posts';
 import { getUsers } from '@/requests/get-users';
@@ -17,7 +18,7 @@ export function Feed() {
   } = useQuery({
     queryKey: ['posts'],
     queryFn: () => getPosts(),
-    staleTime: 1000 * 60 * 15, // 15min
+    staleTime: Infinity,
   });
 
   const {
@@ -27,16 +28,28 @@ export function Feed() {
   } = useQuery({
     queryKey: ['users'],
     queryFn: () => getUsers(),
-    staleTime: 1000 * 60 * 15, // 15min
+    staleTime: Infinity,
+    select(data) {
+      return [...data, userMock];
+    },
   });
 
   if (isLoadingPostsError || isLoadingUsersError) {
     return <Error />;
   }
 
+  const currentUser = userMock;
+
   return (
     <main className="relative flex items-start gap-8">
-      <ProfileResume />
+      <ProfileResume
+        user={{
+          id: currentUser.id,
+          name: currentUser.name,
+          username: currentUser.username,
+          email: currentUser.email,
+        }}
+      />
 
       {isLoadingPosts || isLoadingUsers ? (
         <div className="flex-1 space-y-8">

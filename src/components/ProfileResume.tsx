@@ -1,15 +1,31 @@
 import { PencilSimpleLine } from '@phosphor-icons/react';
 
+import { userMock } from '@/factories/user';
+
 import { Button } from './ui/button';
 import { Separator } from './ui/separator';
 
-export function ProfileResume() {
+type ProfileResumeProps = {
+  user: {
+    id: number;
+    name: string;
+    username: string;
+    email: string;
+  };
+};
+
+export function ProfileResume({ user }: ProfileResumeProps) {
   return (
     <div className="flex w-[296px] flex-col items-center justify-start rounded-lg bg-primary py-8">
-      <p className="text-base font-bold leading-[160%]">John Doe</p>
+      <h4 className="mb-6 text-xl">
+        {user.id === userMock.id ? 'Seu Perfil:' : 'Perfil do Autor:'}
+      </h4>
 
-      <span className="text-sm leading-[160%] text-muted-foreground">
-        Front End Developer
+      <p className="text-base font-bold leading-[160%]">{user.name}</p>
+      <p className="text-base font-bold leading-[160%]">({user.username})</p>
+
+      <span className="mt-3 text-sm leading-[160%] text-muted-foreground">
+        {user.email}
       </span>
 
       <Separator className="my-6 h-[0.5px]" />

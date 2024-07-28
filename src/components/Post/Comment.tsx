@@ -5,7 +5,7 @@ import {
 } from '@phosphor-icons/react';
 import { useState } from 'react';
 
-import { userMock } from '@/mocks/user';
+import { userMock } from '@/factories/user';
 
 import { ConfirmationAlert } from '../ConfirmationAlert';
 import { Tip } from '../Tip';

@@ -10,7 +10,7 @@
 
 2. **Posts de um usuário**
 
-   - [] Clicar em um usuário deve levar a uma página que mostra os posts do usuário
+   - [x] Clicar em um usuário deve levar a uma página que mostra os posts do usuário
 
 3. **Gerenciamento de posts**
 

@@ -1,9 +1,12 @@
+import { Link } from 'react-router-dom';
+
 import { Separator } from '../ui/separator';
 import { CommentsArea } from './CommentsArea';
 
 export type PostProps = {
   postId: number;
   user: {
+    id: number;
     name: string;
     username: string;
     email: string;
@@ -14,7 +17,7 @@ export type PostProps = {
 export function Post({ postId, user, content }: PostProps) {
   return (
     <section className="min-h-[100px] w-full rounded-lg bg-primary p-10">
-      <div className="flex flex-col">
+      <Link to={`/user?id=${user.id}`} className="flex flex-col">
         <p className="text-base font-bold leading-[160%]">
           {user.name} ({user.username})
         </p>
@@ -22,7 +25,7 @@ export function Post({ postId, user, content }: PostProps) {
         <span className="text-sm leading-[160%] text-muted-foreground">
           {user.email}
         </span>
-      </div>
+      </Link>
 
       <p className="mt-3 bg-zinc-800 p-6 text-base leading-[160%] text-zinc-300">
         {content}
