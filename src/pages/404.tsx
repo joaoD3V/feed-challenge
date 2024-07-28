@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 export function NotFound() {
   return (
@@ -11,5 +11,5 @@ export function NotFound() {
         </Link>
       </p>
     </div>
-  )
+  );
 }

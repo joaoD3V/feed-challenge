@@ -7,6 +7,7 @@ import { useState } from 'react';
 
 import { userMock } from '@/mocks/user';
 
+import { ConfirmationAlert } from '../ConfirmationAlert';
 import { Tip } from '../Tip';
 import { Button } from '../ui/button';
 import { Textarea } from '../ui/textarea';
@@ -67,13 +68,15 @@ export function Comment({
                     </Tip>
 
                     <Tip message="Remover comentário">
-                      <Button
-                        variant="ghost"
-                        className="p-1"
-                        onClick={() => onRemoveComment(commentId)}
+                      <ConfirmationAlert
+                        title="Remover comentário"
+                        description="Você tem certeza que gostaria de remover este comentário?"
+                        onConfirm={() => onRemoveComment(commentId)}
                       >
-                        <TrashSimple size={18} />
-                      </Button>
+                        <Button variant="ghost" className="p-1">
+                          <TrashSimple size={18} />
+                        </Button>
+                      </ConfirmationAlert>
                     </Tip>
                   </div>
                 )}
