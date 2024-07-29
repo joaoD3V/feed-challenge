@@ -41,8 +41,13 @@ export function CommentsArea({ postId }: CommentsAreaProps) {
       return;
     }
 
+    // Solucionando o problema da criação de comment com id único
+    const newId = Number(sessionStorage.getItem('commentId')) + 1;
+
+    sessionStorage.setItem('commentId', String(newId));
+
     const comment: CommentType = {
-      id: comments ? comments.length + 1 : 1,
+      id: newId,
       postId,
       email: userMock.email,
       body: newComment,

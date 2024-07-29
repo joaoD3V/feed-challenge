@@ -10,11 +10,11 @@
 
 2. **Posts de um usuário**
 
-   - [x] Clicar em um usuário deve levar a uma página que mostra os posts do usuário
+   - [-] Clicar em um usuário deve levar a uma página que mostra os posts do usuário
 
 3. **Gerenciamento de posts**
 
-   - [] O usuário deve conseguir cadastrar novos posts. Ele também deve conseguir editar e remover estes posts.
+   - [x] O usuário deve conseguir cadastrar novos posts. Ele também deve conseguir editar e remover estes posts.
 
 4. **Perfil**
 

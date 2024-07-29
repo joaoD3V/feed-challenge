@@ -28,10 +28,13 @@ export function CreateNewPost() {
       return;
     }
 
-    const posts = queryClient.getQueryData<Post[]>(['posts']);
+    // Solucionando o problema da criação de posts com id único
+    const newId = Number(sessionStorage.getItem('postId')) + 1;
+
+    sessionStorage.setItem('postId', String(newId));
 
     const post: Post = {
-      id: posts ? posts.length + 1 : 1,
+      id: newId,
       userId: userMock.id,
       body: newPost,
     };
