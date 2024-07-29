@@ -3,8 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { toast } from 'sonner';
 
-import { Comment as CommentType } from '@/@types/JSONPlaceholder';
-import { userMock } from '@/factories/user';
+import { Comment as CommentType, User } from '@/@types/JSONPlaceholder';
 import { queryClient } from '@/lib/react-query';
 import { getCommentsByPostId } from '@/requests/get-comments-by-post-id';
 import { delay } from '@/utils/delay';
@@ -25,6 +24,8 @@ export function CommentsArea({ postId }: CommentsAreaProps) {
   const [commentIdSelected, setCommentIdSelected] = useState<number | null>(
     null
   );
+
+  const currentUser = JSON.parse(sessionStorage.getItem('user') ?? '') as User;
 
   const {
     data: comments,
@@ -49,7 +50,7 @@ export function CommentsArea({ postId }: CommentsAreaProps) {
     const comment: CommentType = {
       id: newId,
       postId,
-      email: userMock.email,
+      email: currentUser.email,
       body: newComment,
     };
 

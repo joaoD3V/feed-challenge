@@ -1,6 +1,6 @@
 import { PencilSimpleLine } from '@phosphor-icons/react';
 
-import { userMock } from '@/factories/user';
+import { User } from '@/@types/JSONPlaceholder';
 
 import { CreateNewPost } from './CreateNewPost';
 import { Button } from './ui/button';
@@ -16,10 +16,12 @@ type ProfileResumeProps = {
 };
 
 export function ProfileResume({ user }: ProfileResumeProps) {
+  const currentUser = JSON.parse(sessionStorage.getItem('user') ?? '') as User;
+
   return (
     <div className="flex w-[296px] flex-col items-center justify-start rounded-lg bg-primary py-8">
       <h4 className="mb-6 text-xl">
-        {user.id === userMock.id ? 'Seu Perfil:' : 'Perfil do Autor:'}
+        {user.id === currentUser.id ? 'Seu Perfil:' : 'Perfil do Autor:'}
       </h4>
 
       <p className="text-base font-bold leading-[160%]">{user.name}</p>
@@ -29,7 +31,7 @@ export function ProfileResume({ user }: ProfileResumeProps) {
         {user.email}
       </span>
 
-      {user.id === userMock.id && (
+      {user.id === currentUser.id && (
         <>
           <Separator className="my-6 h-[0.5px]" />
 

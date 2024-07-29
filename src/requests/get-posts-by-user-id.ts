@@ -1,9 +1,9 @@
-import { Comment } from '@/@types/JSONPlaceholder';
+import { Post } from '@/@types/JSONPlaceholder';
 import { api } from '@/lib/axios';
 
 export async function getPostByUserId(userId: number) {
   try {
-    const postsResponse = await api.get<Comment[]>(`/users/${userId}/posts`);
+    const postsResponse = await api.get<Post[]>(`/users/${userId}/posts`);
 
     return postsResponse.data;
   } catch {

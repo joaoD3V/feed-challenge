@@ -9,13 +9,6 @@ type Params = {
   email: string;
 };
 
-export const userMock = makeUser({
-  id: 1000, // Não altere
-  name: 'John Doe',
-  username: 'john_doe',
-  email: 'john.doe@example.com',
-});
-
 export function makeUser({ id, name, username, email }: Params) {
   const user: User = {
     id,

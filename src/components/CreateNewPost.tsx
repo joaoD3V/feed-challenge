@@ -2,8 +2,7 @@ import { CircleNotch, PlusCircle } from '@phosphor-icons/react';
 import { useState } from 'react';
 import { toast } from 'sonner';
 
-import { Post } from '@/@types/JSONPlaceholder';
-import { userMock } from '@/factories/user';
+import { Post, User } from '@/@types/JSONPlaceholder';
 import { queryClient } from '@/lib/react-query';
 import { delay } from '@/utils/delay';
 
@@ -23,6 +22,8 @@ export function CreateNewPost() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const currentUser = JSON.parse(sessionStorage.getItem('user') ?? '') as User;
+
   async function handleAddNewPost() {
     if (!newPost) {
       return;
@@ -35,7 +36,7 @@ export function CreateNewPost() {
 
     const post: Post = {
       id: newId,
-      userId: userMock.id,
+      userId: currentUser.id,
       body: newPost,
     };
 

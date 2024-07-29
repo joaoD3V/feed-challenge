@@ -5,7 +5,7 @@ import {
 } from '@phosphor-icons/react';
 import { useState } from 'react';
 
-import { userMock } from '@/factories/user';
+import { User } from '@/@types/JSONPlaceholder';
 
 import { ConfirmationAlert } from '../ConfirmationAlert';
 import { Tip } from '../Tip';
@@ -35,6 +35,8 @@ export function Comment({
   const [currentComment, setCurrentComment] = useState(content);
   const [isEditingMode, setIsEditingMode] = useState(false);
 
+  const currentUser = JSON.parse(sessionStorage.getItem('user') ?? '') as User;
+
   return (
     <div
       className={`min-h-[100px] w-full rounded-lg p-4 ${isOnAction ? 'bg-zinc-700' : 'bg-zinc-800'}`}
@@ -51,7 +53,7 @@ export function Comment({
           <p className="text-xs font-medium">Modo de edição</p>
         ) : (
           <>
-            {user.email === userMock.email && (
+            {user.email === currentUser.email && (
               <>
                 {isOnAction ? (
                   <CircleNotch size={18} className="animate-spin" />

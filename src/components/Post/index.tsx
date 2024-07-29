@@ -6,7 +6,7 @@ import {
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { userMock } from '@/factories/user';
+import { User } from '@/@types/JSONPlaceholder';
 
 import { ConfirmationAlert } from '../ConfirmationAlert';
 import { Tip } from '../Tip';
@@ -40,12 +40,21 @@ export function Post({
   const [currentPost, setCurrentPost] = useState(content);
   const [isEditingMode, setIsEditingMode] = useState(false);
 
+  const currentUser = JSON.parse(sessionStorage.getItem('user') ?? '') as User;
+
   return (
     <section
       className={`min-h-[100px] w-full rounded-lg p-10 ${isOnAction ? 'bg-zinc-700' : 'bg-primary'}`}
     >
       <div className="flex items-start justify-between">
-        <Link to={`/user?id=${user.id}`} className="flex flex-col">
+        <Link
+          to={
+            currentUser.id === user.id
+              ? `/user?id=${user.id}&isNew=true`
+              : `/user?id=${user.id}`
+          }
+          className="flex flex-col"
+        >
           <p className="text-base font-bold leading-[160%]">
             {user.name} ({user.username})
           </p>
@@ -59,7 +68,7 @@ export function Post({
           <p className="text-xs font-medium">Modo de edição</p>
         ) : (
           <>
-            {user.email === userMock.email && (
+            {user.id === currentUser.id && (
               <>
                 {isOnAction ? (
                   <CircleNotch size={18} className="animate-spin" />
