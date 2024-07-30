@@ -151,7 +151,7 @@ export function Me() {
             <Input className="h-[50px]" {...register('city')} />
           </div>
         </div>
-        <div className="mt-6 grid grid-cols-1 gap-1 lg:grid-cols-3">
+        <div className="mt-6 grid grid-cols-1 gap-4 lg:grid-cols-3">
           <div className="space-y-1">
             <Label className="text-xs font-medium">Zip Code:</Label>
             <Input className="h-[50px]" {...register('zipcode')} />
@@ -169,7 +169,7 @@ export function Me() {
         <span className="mb-4 mt-10 block text-sm font-medium text-zinc-500 underline underline-offset-4">
           Company
         </span>
-        <div className="grid grid-cols-1 gap-1 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
           <div className="space-y-1">
             <Label className="text-xs font-medium">Name:</Label>
             <Input className="h-[50px]" {...register('companyName')} />
