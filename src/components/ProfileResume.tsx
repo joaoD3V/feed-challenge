@@ -20,7 +20,7 @@ export function ProfileResume({ user }: ProfileResumeProps) {
   const currentUser = JSON.parse(sessionStorage.getItem('user') ?? '') as User;
 
   return (
-    <div className="flex w-[296px] flex-col items-center justify-start rounded-lg bg-primary py-8">
+    <div className="flex w-full flex-col items-center justify-start rounded-lg bg-primary py-8 lg:w-[296px]">
       <h4 className="mb-6 text-xl">
         {user.id === currentUser.id ? 'Meu Perfil:' : 'Perfil do Autor:'}
       </h4>

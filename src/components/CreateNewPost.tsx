@@ -59,7 +59,7 @@ export function CreateNewPost() {
           <PlusCircle size={22} /> Criar novo post
         </Button>
       </DialogTrigger>
-      <DialogContent className="border-none bg-zinc-800 text-zinc-100">
+      <DialogContent className="w-5/6 border-none bg-zinc-800 text-zinc-100">
         <DialogHeader>
           <DialogTitle className="text-xl">Criar novo post</DialogTitle>
           <DialogDescription className="text-zinc-200">

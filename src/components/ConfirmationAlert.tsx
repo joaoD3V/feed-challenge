@@ -30,7 +30,7 @@ export function ConfirmationAlert({
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>{children}</AlertDialogTrigger>
-      <AlertDialogContent className="flex min-h-[238px] w-[432px] flex-col items-center justify-center gap-10 border-none bg-primary px-8 py-6 text-zinc-100">
+      <AlertDialogContent className="flex min-h-[238px] w-5/6 flex-col items-center justify-center gap-10 border-none bg-primary px-8 py-6 text-zinc-100 lg:w-[432px]">
         <AlertDialogHeader>
           <AlertDialogTitle className="text-center text-2xl font-bold leading-[140%]">
             {title}

@@ -99,7 +99,7 @@ export function Feed() {
   }
 
   return (
-    <main className="relative flex items-start gap-8">
+    <main className="relative flex flex-col items-start gap-8 lg:flex-row">
       <ProfileResume
         user={{
           id: currentUser.id,

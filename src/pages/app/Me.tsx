@@ -99,7 +99,7 @@ export function Me() {
 
   return (
     <main
-      className={`mx-auto min-h-[200px] w-[800px] rounded-lg p-8 ${isSubmitting ? 'bg-zinc-800' : 'bg-primary'}`}
+      className={`mx-auto min-h-[200px] w-full rounded-lg p-8 lg:w-[800px] ${isSubmitting ? 'bg-zinc-800' : 'bg-primary'}`}
     >
       <h1 className="mx-auto w-max text-3xl font-medium">Meu Perfil</h1>
       <form
@@ -109,78 +109,78 @@ export function Me() {
         <span className="mb-4 block text-sm font-medium text-zinc-500 underline underline-offset-4">
           Basic Informations
         </span>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
           <div className="space-y-1">
             <Label className="text-xs font-medium">Name:</Label>
-            <Input {...register('name')} />
+            <Input className="h-[50px]" {...register('name')} />
           </div>
           <div className="space-y-1">
             <Label className="text-xs font-medium">Username:</Label>
-            <Input {...register('username')} />
+            <Input className="h-[50px]" {...register('username')} />
           </div>
           <div className="space-y-1">
             <Label className="text-xs font-medium">Email:</Label>
-            <Input type="email" {...register('email')} />
+            <Input className="h-[50px]" type="email" {...register('email')} />
           </div>
         </div>
-        <div className="mt-6 grid grid-cols-3 gap-4">
+        <div className="mt-6 grid grid-cols-1 gap-4 lg:grid-cols-3">
           <div className="space-y-1">
             <Label className="text-xs font-medium">Phone:</Label>
-            <Input {...register('phone')} />
+            <Input className="h-[50px]" {...register('phone')} />
           </div>
           <div className="space-y-1">
             <Label className="text-xs font-medium">Website:</Label>
-            <Input {...register('website')} />
+            <Input className="h-[50px]" {...register('website')} />
           </div>
         </div>
 
         <span className="mb-4 mt-10 block text-sm font-medium text-zinc-500 underline underline-offset-4">
           Address
         </span>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
           <div className="space-y-1">
             <Label className="text-xs font-medium">Street:</Label>
-            <Input {...register('street')} />
+            <Input className="h-[50px]" {...register('street')} />
           </div>
           <div className="space-y-1">
             <Label className="text-xs font-medium">Suite:</Label>
-            <Input {...register('suite')} />
+            <Input className="h-[50px]" {...register('suite')} />
           </div>
           <div className="space-y-1">
             <Label className="text-xs font-medium">City:</Label>
-            <Input {...register('city')} />
+            <Input className="h-[50px]" {...register('city')} />
           </div>
         </div>
-        <div className="mt-6 grid grid-cols-3 gap-4">
+        <div className="mt-6 grid grid-cols-1 gap-1 lg:grid-cols-3">
           <div className="space-y-1">
             <Label className="text-xs font-medium">Zip Code:</Label>
-            <Input {...register('zipcode')} />
+            <Input className="h-[50px]" {...register('zipcode')} />
           </div>
           <div className="space-y-1">
             <Label className="text-xs font-medium">Latitude:</Label>
-            <Input {...register('lat')} />
+            <Input className="h-[50px]" {...register('lat')} />
           </div>
           <div className="space-y-1">
             <Label className="text-xs font-medium">Longitude:</Label>
-            <Input {...register('lng')} />
+            <Input className="h-[50px]" {...register('lng')} />
           </div>
         </div>
 
         <span className="mb-4 mt-10 block text-sm font-medium text-zinc-500 underline underline-offset-4">
           Company
         </span>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 gap-1 lg:grid-cols-3">
           <div className="space-y-1">
             <Label className="text-xs font-medium">Name:</Label>
-            <Input {...register('companyName')} />
+            <Input className="h-[50px]" {...register('companyName')} />
           </div>
           <div className="space-y-1">
             <Label className="text-xs font-medium">Catch Phrase:</Label>
-            <Input {...register('catchPhrase')} />
+            <Input className="h-[50px]" {...register('catchPhrase')} />
           </div>
           <div className="space-y-1">
             <Label className="text-xs font-medium">Buzz Phrase:</Label>
-            <Input {...register('bs')} />
+            <Input className="h-[50px]" {...register('bs')} />
           </div>
         </div>
 

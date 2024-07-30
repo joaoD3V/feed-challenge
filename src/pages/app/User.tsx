@@ -37,7 +37,7 @@ export function User() {
         setIsLoading(true);
         setPosts(getNewUserPosts());
         setIsLoading(false);
-      }, 1000 * 1); // 1s;
+      }, 500); // 500ms;
 
       return () => {
         clearInterval(intervalId);
@@ -54,7 +54,7 @@ export function User() {
   }
 
   return (
-    <main className="relative flex items-start gap-8">
+    <main className="relative flex flex-col items-start gap-8 lg:flex-row">
       <ProfileResume
         user={{
           id: user.id,
@@ -65,7 +65,7 @@ export function User() {
       />
 
       {isLoading ? (
-        <div className="flex-1 space-y-8">
+        <div className="w-full flex-1 space-y-8">
           <Skeleton className="h-[400px] flex-1 rounded-lg bg-zinc-700" />
           <Skeleton className="h-[400px] flex-1 rounded-lg bg-zinc-700" />
           <Skeleton className="h-[400px] flex-1 rounded-lg bg-zinc-700" />
@@ -74,7 +74,7 @@ export function User() {
       ) : (
         <>
           {posts.length > 0 ? (
-            <div className="flex flex-1 flex-col gap-8">
+            <div className="flex w-full flex-1 flex-col gap-8">
               <PostsArea posts={posts ?? []} />
             </div>
           ) : (
