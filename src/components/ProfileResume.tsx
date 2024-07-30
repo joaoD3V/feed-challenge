@@ -1,4 +1,5 @@
 import { PencilSimpleLine } from '@phosphor-icons/react';
+import { Link } from 'react-router-dom';
 
 import { User } from '@/@types/JSONPlaceholder';
 
@@ -21,24 +22,43 @@ export function ProfileResume({ user }: ProfileResumeProps) {
   return (
     <div className="flex w-[296px] flex-col items-center justify-start rounded-lg bg-primary py-8">
       <h4 className="mb-6 text-xl">
-        {user.id === currentUser.id ? 'Seu Perfil:' : 'Perfil do Autor:'}
+        {user.id === currentUser.id ? 'Meu Perfil:' : 'Perfil do Autor:'}
       </h4>
 
-      <p className="text-base font-bold leading-[160%]">{user.name}</p>
-      <p className="text-base font-bold leading-[160%]">({user.username})</p>
-
-      <span className="mt-3 text-sm leading-[160%] text-muted-foreground">
-        {user.email}
-      </span>
+      {user.id === currentUser.id ? (
+        <Link to={`/user?id=${currentUser.id}&isNew=true`}>
+          <p className="text-center text-base font-bold leading-[160%]">
+            {user.name}
+          </p>
+          <p className="text-center text-base font-bold leading-[160%]">
+            ({user.username})
+          </p>
+          <span className="mt-3 block text-sm leading-[160%] text-muted-foreground">
+            {user.email}
+          </span>
+        </Link>
+      ) : (
+        <>
+          <p className="text-base font-bold leading-[160%]">{user.name}</p>
+          <p className="text-base font-bold leading-[160%]">
+            ({user.username})
+          </p>
+          <span className="mt-3 text-sm leading-[160%] text-muted-foreground">
+            {user.email}
+          </span>
+        </>
+      )}
 
       {user.id === currentUser.id && (
         <>
           <Separator className="my-6 h-[0.5px]" />
 
           <div className="space-y-6">
-            <Button className="flex h-[50px] w-[192px] items-center gap-2 border border-zinc-50 text-base font-medium text-zinc-50 hover:bg-zinc-800">
-              <PencilSimpleLine size={22} /> Editar perfil
-            </Button>
+            <Link to="/me">
+              <Button className="flex h-[50px] w-[192px] items-center gap-2 border border-zinc-50 text-base font-medium text-zinc-50 hover:bg-zinc-800">
+                <PencilSimpleLine size={22} /> Editar perfil
+              </Button>
+            </Link>
 
             <CreateNewPost />
           </div>

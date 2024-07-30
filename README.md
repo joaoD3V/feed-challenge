@@ -10,7 +10,7 @@
 
 2. **Posts de um usuário**
 
-   - [-] Clicar em um usuário deve levar a uma página que mostra os posts do usuário
+   - [x] Clicar em um usuário deve levar a uma página que mostra os posts do usuário
 
 3. **Gerenciamento de posts**
 
@@ -18,7 +18,7 @@
 
 4. **Perfil**
 
-   - [] Deve existir uma página para visualizar e editar os dados do usuário atual.
+   - [x] Deve existir uma página para visualizar e editar os dados do usuário atual.
    
    - Não precisa implementar um mecanismo de autenticação. Pode deixar hardcoded o usuário autenticado.
 

@@ -13,6 +13,7 @@ import { NotFound } from '../404';
 export function User() {
   const [searchParams] = useSearchParams();
   const [posts, setPosts] = useState<PostType[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const userId = searchParams.get('id');
   const isNew = searchParams.get('isNew');
@@ -33,14 +34,18 @@ export function User() {
   useEffect(() => {
     if (isNew) {
       const intervalId = setInterval(() => {
+        setIsLoading(true);
         setPosts(getNewUserPosts());
+        setIsLoading(false);
       }, 1000 * 1); // 1s;
 
       return () => {
         clearInterval(intervalId);
       };
     } else {
+      setIsLoading(true);
       setPosts(getNewUserPosts());
+      setIsLoading(false);
     }
   }, [isNew]);
 
@@ -59,7 +64,7 @@ export function User() {
         }}
       />
 
-      {posts.length === 0 ? (
+      {isLoading ? (
         <div className="flex-1 space-y-8">
           <Skeleton className="h-[400px] flex-1 rounded-lg bg-zinc-700" />
           <Skeleton className="h-[400px] flex-1 rounded-lg bg-zinc-700" />
@@ -67,9 +72,17 @@ export function User() {
           <Skeleton className="h-[400px] flex-1 rounded-lg bg-zinc-700" />
         </div>
       ) : (
-        <div className="flex flex-1 flex-col gap-8">
-          <PostsArea posts={posts ?? []} />
-        </div>
+        <>
+          {posts.length > 0 ? (
+            <div className="flex flex-1 flex-col gap-8">
+              <PostsArea posts={posts ?? []} />
+            </div>
+          ) : (
+            <span className="mx-auto w-max text-3xl">
+              Nenhum post encontrado
+            </span>
+          )}
+        </>
       )}
     </main>
   );
