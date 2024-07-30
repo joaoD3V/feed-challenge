@@ -117,7 +117,7 @@ export function Feed() {
           <Skeleton className="h-[400px] flex-1 rounded-lg bg-zinc-700" />
         </div>
       ) : (
-        <PostsArea posts={posts!} />
+        <PostsArea posts={posts!} currentUser={currentUser!} />
       )}
     </main>
   );

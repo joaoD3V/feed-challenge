@@ -10,9 +10,10 @@ import { Post } from '.';
 
 type PostsAreaProps = {
   posts: PostType[];
+  currentUser: User;
 };
 
-export function PostsArea({ posts }: PostsAreaProps) {
+export function PostsArea({ posts, currentUser }: PostsAreaProps) {
   const [postIdSelected, setPostIdSelected] = useState<number | null>(null);
 
   const usersList = queryClient.getQueryData<User[]>(['users']) ?? [];
@@ -51,7 +52,11 @@ export function PostsArea({ posts }: PostsAreaProps) {
         <Post
           key={post.id}
           postId={post.id}
-          user={userMapper({ usersList, id: post.userId })}
+          user={userMapper({
+            usersList,
+            id: post.userId,
+            currentUser: currentUser!,
+          })}
           content={post.body}
           onRemovePost={handleRemovePost}
           onEditingPost={handleEditingPost}

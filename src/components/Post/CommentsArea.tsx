@@ -140,12 +140,19 @@ export function CommentsArea({ postId }: CommentsAreaProps) {
                 <Comment
                   key={comment.id}
                   commentId={comment.id}
-                  user={{
-                    name: extractNameFromEmail(comment.email),
-                    email: comment.email[0]
-                      .toLowerCase()
-                      .concat(comment.email.substring(1)),
-                  }}
+                  user={
+                    currentUser.email === comment.email
+                      ? {
+                          name: currentUser.name,
+                          email: currentUser.email,
+                        }
+                      : {
+                          name: extractNameFromEmail(comment.email),
+                          email: comment.email[0]
+                            .toLowerCase()
+                            .concat(comment.email.substring(1)),
+                        }
+                  }
                   content={comment.body}
                   onRemoveComment={handleRemoveComment}
                   onEditingComment={handleEditingComment}

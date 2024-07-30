@@ -1,5 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { CircleNotch, FloppyDisk } from '@phosphor-icons/react';
+import { useQuery } from '@tanstack/react-query';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { z } from 'zod';
@@ -8,9 +10,13 @@ import { User } from '@/@types/JSONPlaceholder';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Skeleton } from '@/components/ui/skeleton';
+import { makeUser } from '@/factories/user';
+import { getUsers } from '@/requests/get-users';
 import { delay } from '@/utils/delay';
 
 import { NotFound } from '../404';
+import { Error } from '../Error';
 
 const userProfileSchema = z.object({
   name: z.string(),
@@ -32,11 +38,37 @@ const userProfileSchema = z.object({
 type UserProfileSchema = z.infer<typeof userProfileSchema>;
 
 export function Me() {
-  const userOnStorage = sessionStorage.getItem('user');
+  const [currentUser, setCurrentUser] = useState<User | null>(
+    sessionStorage.getItem('user')
+      ? JSON.parse(sessionStorage.getItem('user')!)
+      : null
+  );
 
-  const currentUser: User | null = userOnStorage
-    ? JSON.parse(userOnStorage)
-    : null;
+  const {
+    data: users,
+    isLoading: isLoadingUsers,
+    isLoadingError: isLoadingUsersError,
+  } = useQuery({
+    queryKey: ['users'],
+    queryFn: () => getUsers(),
+    staleTime: Infinity,
+  });
+
+  // Usuário criado e autenticado hardcoded
+  useEffect(() => {
+    if (users && !sessionStorage.getItem('user')) {
+      const user = makeUser({
+        id: users[users.length - 1].id + 1,
+        name: 'John',
+        username: 'Doe',
+        email: 'john@example.com',
+      });
+
+      sessionStorage.setItem('user', JSON.stringify(user));
+
+      setCurrentUser(user);
+    }
+  }, [users]);
 
   const {
     register,
@@ -61,6 +93,19 @@ export function Me() {
       bs: currentUser?.company.bs ?? '',
     },
   });
+
+  if (isLoadingUsersError) {
+    return <Error />;
+  }
+
+  if (!currentUser) {
+    // Representa um "placeholder" do usuário se logando
+    return (
+      <div className="flex flex-1 items-center justify-center">
+        <CircleNotch className="animate-spin" size={80} />
+      </div>
+    );
+  }
 
   async function handleUpdateUser(data: UserProfileSchema) {
     await delay(); // Mockando o tempo de espera de um fake request
@@ -95,6 +140,12 @@ export function Me() {
 
   if (!currentUser) {
     return <NotFound />;
+  }
+
+  if (isLoadingUsers) {
+    return (
+      <Skeleton className="mx-auto min-h-[500px] w-full rounded-lg p-8 lg:w-[800px]" />
+    );
   }
 
   return (

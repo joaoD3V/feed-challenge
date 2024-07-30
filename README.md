@@ -1,36 +1,135 @@
-### Funcionalidades Requeridas
+# Feed Challenge
+
+Bem-vindo(a) ao **Feed Challenge**, um projeto que consiste em um feed de posts, parecido com o Twitter/X, utilizando a api fornecida pelo [JSON Placeholder](https://jsonplaceholder.typicode.com/) para buscar os usuários, posts e comentários.
+
+Esse projeto faz parte do desafio proposto pela Kolab, utilizando React e Typescript.
+
+## Screenshots
+
+<p align="center">
+  <img alt="" src=".github/1.png" width="100%">
+</p>
+
+<p align="center">
+  <img alt="" src=".github/2.png" width="100%">
+</p>
+
+<p align="center">
+  <img alt="" src=".github/3.png" width="100%">
+</p>
+
+<p align="center">
+  <img alt="" src=".github/4.png" width="100%">
+</p>
+
+<p align="center">
+  <img alt="" src=".github/5.png" width="100%">
+</p>
+
+<p align="center">
+  <img alt="" src=".github/6.png" width="100%">
+</p>
+
+## 🛠️ Principais Tecnologias
+
+- React
+- Typescript
+- React Router
+- Tanstack Query
+- Tailwind CSS
+- Shadcn/UI
+- React Hook Form
+- Zod
+- Playwright
+
+
+## 🚀 Principais Funcionalidades
 
 1. **Feed de Posts**
    
-   - [x] A home page da aplicação deve listar posts dos usuários em um feed, contendo:
-     - [x] Conteúdo do post
-     - [x] Autor do post
-     - [x] Comentários do post (a relação entre comentários e usuários pode ser aleatorizada, já que a API não fornece essa informação).
-    - [x] Deve ser possível criar, editar ou remover um comentário de um post
+   A home page da aplicação exibe a listagem de posts dos usuários em um feed, contendo:
+     - Conteúdo do post
+     - Autor do post
+     - Comentários do post
+
+   Além disso, o usuário logado pode criar, editar ou remover um comentário que ele fez em um post
 
 2. **Posts de um usuário**
 
-   - [x] Clicar em um usuário deve levar a uma página que mostra os posts do usuário
+   Ao clicar em um usuário, redireciona para uma página que mostra os posts do usuário clicado
 
 3. **Gerenciamento de posts**
 
-   - [x] O usuário deve conseguir cadastrar novos posts. Ele também deve conseguir editar e remover estes posts.
+   O usuário logado pode cadastrar novos posts. Ele também pode editar e remover estes posts.
 
 4. **Perfil**
 
-   - [x] Deve existir uma página para visualizar e editar os dados do usuário atual.
-   
-   - Não precisa implementar um mecanismo de autenticação. Pode deixar hardcoded o usuário autenticado.
+   O usuário logado consegue visitar uma página específica para visualizar e editar seus dados.
 
-### Bônus
+## ☑️ Tarefas extras implementadas
 
-Caso você tenha feito as funcionalidades requisitadas acima, já está bom, de verdade... Mas se quiser ir além, sinta-se a vontade para demostrar seu conhecimento ou aprender!
+- Testes automatizados (end-to-end)
+- Gerenciamento de erros
 
-- [] Adicionar imagens aos posts.
-- [] Adicionar avatar aos usuários.
-- [] Busca de usuários por nome.
-- [] Permitir que o usuário selecione e remova vários posts de uma só vez.
-- [] Testes automatizados (unitários e/ou end-to-end).
-- [] Gerenciamento de erros.
-- [] Storybook.
-- [] Localização (i18n).
+## ⚠️ Requisitos para a instalação
+```
+## Para ver a versão do node:
+node -v
+```
+
+```
+## Para ver a versão do yarn:
+yarn -v
+```
+
+É necessário que você tenha em sua máquina uma versão do **node >= 18** e a do **yarn >= 1**. Caso não possua algum desses dois requisitos, você poderá seguir o passo a passo para a instalação nos links abaixo:
+
+[Como instalar o node em qualquer sistema operacional](https://efficient-sloth-d85.notion.site/Instalando-o-Node-js-d40fdabe8f0a491eb33b85da93d90a2f)
+
+[Como instalar o yarn em qualquer sistema operacional](https://efficient-sloth-d85.notion.site/Instalando-o-Yarn-eca6a13be5b3467d8d2f7be15c60f322)
+
+<!-- É necessário fazer a instalação de alguns plugins para o VSCode, com o intuito de facilitar na hora do desenvolvimento:
+
+[ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+
+[PostCSS Language Support](https://marketplace.visualstudio.com/items?itemName=csstools.postcss)
+
+[Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss) -->
+
+
+
+
+## 👣 Passo a passo para rodar o projeto em sua máquina
+
+1 - Para clonar o projeto:
+```
+git clone https://github.com/joaoD3V/feed-challenge.git
+```
+2 - Para instalar as dependências do projeto:
+```
+yarn install
+```
+3 - Para rodar o projeto em ambiente de desenvolvimento:
+```
+yarn dev
+```
+4 - Para rodar o projeto em ambiente de produção:
+```
+yarn build && yarn preview
+```
+---
+**Para rodar os testes automatizados (end-to-end):**
+
+No terminal:
+```
+yarn playwright test
+```
+
+Na interface:
+```
+yarn playwright test --ui
+```
+
+---
+
+Feito com ♥ by joaoD3V

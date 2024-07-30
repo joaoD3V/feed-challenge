@@ -107,7 +107,7 @@ export function Post({
       {isEditingMode ? (
         <>
           <Textarea
-            placeholder="Edite seu comentário..."
+            placeholder="Edite seu post..."
             className="mt-4 h-24 resize-none rounded-lg border-none bg-zinc-950 px-4 py-3 placeholder:text-zinc-300"
             value={currentPost}
             onChange={(e) => setCurrentPost(e.target.value)}
