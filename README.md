@@ -120,12 +120,17 @@ yarn build && yarn preview
 ---
 **Para rodar os testes automatizados (end-to-end):**
 
-No terminal:
+Antes de rodar os testes, instale o Playwright:
+```
+yarn playwright install
+```
+
+Para rodar os testes no terminal:
 ```
 yarn playwright test
 ```
 
-Na interface:
+Para rodar os testes na interface:
 ```
 yarn playwright test --ui
 ```
